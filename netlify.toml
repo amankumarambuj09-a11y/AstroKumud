@@ -4,6 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  FORM_NOTIFICATION_EMAIL = "kumudmmaarik@gmail.com"
 
 [[headers]]
   for = "/*"

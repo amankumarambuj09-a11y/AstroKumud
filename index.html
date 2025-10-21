@@ -226,7 +226,9 @@
         <div class="container">
             <h2 class="section-title">Book Your Appointment</h2>
             <div class="booking-form-container">
-                <form id="appointmentForm" class="booking-form">
+                <form id="appointmentForm" class="booking-form" name="appointment-booking" method="POST"
+                    data-netlify="true" data-netlify-recaptcha="true" action="/thank-you.html">
+                    <input type="hidden" name="form-name" value="appointment-booking">
                     <div class="form-group">
                         <label for="name">Full Name *</label>
                         <input type="text" id="name" name="name" required>
@@ -297,9 +299,9 @@
                             placeholder="Please describe your concerns or questions..."></textarea>
                     </div>
 
-                    <!-- reCAPTCHA -->
+                    <!-- Netlify reCAPTCHA -->
                     <div class="form-group">
-                        <div class="g-recaptcha" data-sitekey="6LcYourSiteKeyHere"></div>
+                        <div data-netlify-recaptcha="true"></div>
                     </div>
 
                     <button type="submit" class="submit-btn">Book Appointment</button>
@@ -431,7 +433,9 @@
             <span class="close">&times;</span>
             <h2>Quick Booking</h2>
             <p id="modalServiceName"></p>
-            <form id="quickBookingForm">
+            <form id="quickBookingForm" name="quick-booking" method="POST" data-netlify="true"
+                data-netlify-recaptcha="true" action="/thank-you.html">
+                <input type="hidden" name="form-name" value="quick-booking">
                 <input type="hidden" id="modalService" name="service">
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Your Name" required>
@@ -442,9 +446,9 @@
                 <div class="form-group">
                     <input type="email" name="email" placeholder="Email" required>
                 </div>
-                <!-- reCAPTCHA for quick booking -->
+                <!-- Netlify reCAPTCHA -->
                 <div class="form-group">
-                    <div class="g-recaptcha" data-sitekey="6LcYourSiteKeyHere"></div>
+                    <div data-netlify-recaptcha="true"></div>
                 </div>
                 <button type="submit" class="submit-btn">Book Now</button>
             </form>

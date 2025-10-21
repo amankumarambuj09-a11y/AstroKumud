@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro Kumud - Astrology Consultation & Kundali Services</title>
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://apis.google.com https://accounts.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://accounts.google.com https://www.googleapis.com;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Professional astrology consultation services by Astro Kumud. Expert in Kundali analysis, matchmaking, career guidance, and spiritual healing with 10+ years experience.">
+    <meta name="keywords"
+        content="astrology, kundali, horoscope, matchmaking, numerology, career guidance, spiritual healing, Astro Kumud">
+    <meta name="author" content="Astro Kumud">
+    <meta property="og:title" content="Astro Kumud - Professional Astrology Consultation">
+    <meta property="og:description"
+        content="Get expert astrology consultation, kundali analysis, and spiritual guidance from Astro Kumud with 10+ years experience.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://astrokumud.com">
+
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <!-- reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="om-symbol">ॐ</span>
+                    <span>Astro Kumud</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#booking">Book Appointment</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#" onclick="showLoginModal()" class="login-btn">Login</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Bhakti, Blessings & Positive Energy</h1>
+                <p>Ghar Baithe Participate in Spiritual Poojas</p>
+                <h2>With Astro Kumud</h2>
+                <button class="cta-button" onclick="scrollToBooking()">Reserve Your Seat Now</button>
+            </div>
+            <div class="hero-image">
+                <div class="astrologer-card">
+                    <i class="fas fa-user-tie astrologer-icon"></i>
+                    <h3>Astro Kumud</h3>
+                    <p>Expert Astrologer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <!-- Service Cards -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Har Ghar Yantra Webinar</h3>
+                    <p>Live Har Ghar Yantra Webinar on Zoom</p>
+                    <button class="order-btn" onclick="openBookingModal('webinar')">Order Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Cosmic Code</h3>
+                    <p>Cosmic code report brings real answers, not just hope.</p>
+                    <button class="order-btn" onclick="openBookingModal('cosmic')">Order Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Lal Kitab Report</h3>
+                    <p>Lal Kitab remedies attract success, prosperity, and positivity.</p>
+                    <button class="order-btn" onclick="openBookingModal('lalkitab')">Order Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Fortune Report Plus</h3>
+                    <p>Your Fortune Report Plus Gives the Big Picture</p>
+                    <button class="order-btn" onclick="openBookingModal('fortune')">Order Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Book Consultation Call</h3>
+                    <p>Personalized guidance on life, love, career, business, money</p>
+                    <button class="order-btn" onclick="openBookingModal('consultation')">Order Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Finance Report</h3>
+                    <p>Get your personalised Finance Report</p>
+                    <button class="order-btn" onclick="openBookingModal('finance')">Order Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Occult Gurukul</h3>
+                    <p>Learn Astrology with Astro Kumud</p>
+                    <button class="order-btn" onclick="openBookingModal('occult')">Order Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-diamond"></i>
+                    </div>
+                    <h3>Gemsmantra</h3>
+                    <p>GemsMantra celebrates the wonders of gemstones by connecting people with their beauty, energy,
+                        and purpose.</p>
+                    <button class="order-btn" onclick="openBookingModal('gems')">Order Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Career Report</h3>
+                    <p>Get detailed insights about your career path and opportunities</p>
+                    <button class="order-btn" onclick="openBookingModal('career')">Order Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Kaal Sarp & Manglik Dosh Report</h3>
+                    <p>Detailed analysis and remedies for doshas</p>
+                    <button class="order-btn" onclick="openBookingModal('dosh')">Order Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Fortune Report</h3>
+                    <p>Comprehensive fortune analysis and predictions</p>
+                    <button class="order-btn" onclick="openBookingModal('fortune-basic')">Order Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-rings-wedding"></i>
+                    </div>
+                    <h3>Couple Kundali</h3>
+                    <p>Kundali Milan for perfect matchmaking</p>
+                    <button class="order-btn" onclick="openBookingModal('couple')">Order Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Astro Kumud</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>With over 10 years of experience in Vedic astrology and numerology, Astro Kumud has helped
+                        thousands of people find clarity and direction in their lives. Specializing in Kundali analysis,
+                        matchmaking, career guidance, and spiritual healing.</p>
+                    <ul class="expertise-list">
+                        <li><i class="fas fa-check"></i> Vedic Astrology Expert</li>
+                        <li><i class="fas fa-check"></i> Numerology Specialist</li>
+                        <li><i class="fas fa-check"></i> Kundali Matching Expert</li>
+                        <li><i class="fas fa-check"></i> Career & Business Consultant</li>
+                        <li><i class="fas fa-check"></i> Spiritual Healer</li>
+                        <li><i class="fas fa-check"></i> 10+ Years Experience</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="booking">
+        <div class="container">
+            <h2 class="section-title">Book Your Appointment</h2>
+            <div class="booking-form-container">
+                <form id="appointmentForm" class="booking-form">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Service Type *</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a service</option>
+                            <option value="kundali">Kundali Discussion</option>
+                            <option value="matchmaking">Matchmaking</option>
+                            <option value="career">Career Guidance</option>
+                            <option value="health">Health Consultation</option>
+                            <option value="finance">Finance Report</option>
+                            <option value="consultation">Personal Consultation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Preferred Date *</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Preferred Time *</label>
+                        <select id="time" name="time" required>
+                            <option value="">Select time</option>
+                            <option value="09:00">9:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                            <option value="17:00">5:00 PM</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthdate">Date of Birth</label>
+                        <input type="date" id="birthdate" name="birthdate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthtime">Time of Birth</label>
+                        <input type="time" id="birthtime" name="birthtime">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthplace">Place of Birth</label>
+                        <input type="text" id="birthplace" name="birthplace" placeholder="Search city..."
+                            autocomplete="off">
+                        <div id="locationSuggestions" class="location-suggestions"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Additional Message</label>
+                        <textarea id="message" name="message" rows="4"
+                            placeholder="Please describe your concerns or questions..."></textarea>
+                    </div>
+
+                    <!-- reCAPTCHA -->
+                    <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="6LcYourSiteKeyHere"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Book Appointment</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>+91 8210490151</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>kumudmmaarik@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Hours</h3>
+                    <p>Mon-Sun: 9:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Astro Kumud</h3>
+                    <p>Your trusted partner in spiritual guidance and astrology consultation.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#booking">Book Appointment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Astro Kumud. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Login / Sign Up</h2>
+            <div class="auth-container">
+                <!-- Google Sign-In Button -->
+                <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+                    data-callback="handleCredentialResponse" data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
+                    data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+                </div>
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <!-- Email/Password Login -->
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Login</button>
+                </form>
+
+                <div class="auth-switch">
+                    <p>Don't have an account? <a href="#" onclick="showSignupForm()">Sign Up</a></p>
+                </div>
+
+                <!-- Sign Up Form (Hidden by default) -->
+                <form id="signupForm" class="auth-form" style="display: none;">
+                    <div class="form-group">
+                        <input type="text" name="fullName" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" placeholder="Password" required minlength="8">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Sign Up</button>
+                </form>
+
+                <div id="signupSwitch" class="auth-switch" style="display: none;">
+                    <p>Already have an account? <a href="#" onclick="showLoginForm()">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Quick Booking</h2>
+            <p id="modalServiceName"></p>
+            <form id="quickBookingForm">
+                <input type="hidden" id="modalService" name="service">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <!-- reCAPTCHA for quick booking -->
+                <div class="form-group">
+                    <div class="g-recaptcha" data-sitekey="6LcYourSiteKeyHere"></div>
+                </div>
+                <button type="submit" class="submit-btn">Book Now</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

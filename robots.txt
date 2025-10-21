@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /.env
+Disallow: /config/
+Disallow: /functions/
+Disallow: /api/
+
+Sitemap: https://astrokumud.com/sitemap.xml
+
+# Security
+User-agent: *
+Crawl-delay: 1
+
+# Block malicious bots
+User-agent: BadBot
+Disallow: /
+
+User-agent: MaliciousBot
+Disallow: /
+
+User-agent: Scrapy
+Disallow: /

@@ -1073,3 +1073,110 @@ if (originalAppointmentSubmit) {
 window.showAdminPanel = showAdminPanel;
 window.authManager = authManager;
 window.security = security;
+// E
+nhanced Netlify Form Handling for Email Notifications
+function handleNetlifyFormSubmission(form) {
+    const submitBtn = form.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+    
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    // Show success message
+    setTimeout(() => {
+        showNotification('Booking submitted successfully! You will be redirected...', 'success');
+    }, 1000);
+}
+
+// Override existing form handlers for Netlify integration
+document.addEventListener('DOMContentLoaded', function() {
+    // Remove existing event listeners and add Netlify-compatible ones
+    const appointmentForm = document.getElementById('appointmentForm');
+    if (appointmentForm) {
+        // Clone form to remove existing event listeners
+        const newForm = appointmentForm.cloneNode(true);
+        appointmentForm.parentNode.replaceChild(newForm, appointmentForm);
+        
+        newForm.addEventListener('submit', function(e) {
+            if (!validateFormSecure(this)) {
+                e.preventDefault();
+                showNotification('Please fill in all required fields correctly.', 'error');
+                return;
+            }
+            
+            // Check rate limiting
+            const userIdentifier = this.querySelector('input[name="email"]').value;
+            if (!security.checkRateLimit(userIdentifier)) {
+                e.preventDefault();
+                showNotification('Too many booking attempts. Please try again later.', 'error');
+                return;
+            }
+            
+            // Add user info if logged in
+            if (authManager.currentUser) {
+                const userIdField = document.createElement('input');
+                userIdField.type = 'hidden';
+                userIdField.name = 'userId';
+                userIdField.value = authManager.currentUser.id;
+                this.appendChild(userIdField);
+                
+                const loginMethodField = document.createElement('input');
+                loginMethodField.type = 'hidden';
+                loginMethodField.name = 'userLoginMethod';
+                loginMethodField.value = authManager.currentUser.loginMethod;
+                this.appendChild(loginMethodField);
+            }
+            
+            // Add timestamp
+            const timestampField = document.createElement('input');
+            timestampField.type = 'hidden';
+            timestampField.name = 'submissionTime';
+            timestampField.value = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+            this.appendChild(timestampField);
+            
+            handleNetlifyFormSubmission(this);
+            // Form will submit normally to Netlify
+        });
+    }
+    
+    const quickBookingForm = document.getElementById('quickBookingForm');
+    if (quickBookingForm) {
+        quickBookingForm.addEventListener('submit', function(e) {
+            if (!validateFormSecure(this)) {
+                e.preventDefault();
+                showNotification('Please fill in all required fields correctly.', 'error');
+                return;
+            }
+            
+            // Add timestamp
+            const timestampField = document.createElement('input');
+            timestampField.type = 'hidden';
+            timestampField.name = 'submissionTime';
+            timestampField.value = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+            this.appendChild(timestampField);
+            
+            handleNetlifyFormSubmission(this);
+            // Form will submit normally to Netlify
+        });
+    }
+});
+
+// Email notification setup instructions
+console.log(`
+🕉️ ASTRO KUMUD - EMAIL SETUP COMPLETE
+
+📧 Email Notifications Setup:
+1. Deploy to Netlify
+2. Go to Site Settings > Forms
+3. Set notification email to: kumudmmaarik@gmail.com
+4. Enable form notifications
+
+📋 All bookings will be sent to your Gmail automatically!
+
+🔗 After deployment, configure:
+- Netlify Forms notifications
+- Email templates
+- Spam filtering
+
+📱 Backup notification via WhatsApp: +91 8210490151
+`);
